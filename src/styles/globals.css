@@ -78,15 +78,36 @@
 @layer utilities {
   /* Hide scrollbar for Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
-      display: none;
+    display: none;
   }
- /* Hide scrollbar for IE, Edge and Firefox */
+  /* Hide scrollbar for IE, Edge and Firefox */
   .no-scrollbar {
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
-}
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }
 
 dialog {
-  @apply max-w-[100vw] max-h-[100vh];
+  @apply max-h-[100vh] max-w-[100vw];
+}
+
+.spinner_98HH {
+  animation: spinner_mnRT 1.6s cubic-bezier(0.52, 0.6, 0.25, 0.99) infinite;
+}
+.spinner_roCJ {
+  animation-delay: 0.2s;
+}
+.spinner_q4Oo {
+  animation-delay: 0.4s;
+}
+@keyframes spinner_mnRT {
+  0% {
+    r: 0;
+    opacity: 1;
+  }
+  75%,
+  100% {
+    r: 11px;
+    opacity: 0;
+  }
 }
