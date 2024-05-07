@@ -4,6 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 import { images } from "./db/schema";
 import { and, eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
+import analyticsServerClient from "./analytics";
 
 export const getUserImages = async () => {
   const user = auth();
@@ -56,6 +57,14 @@ export const deleteImage = async (id: number) => {
   }
 
   await db.delete(images).where(and(eq(images.id, id), eq(images.userId, user.userId)));
+
+  analyticsServerClient.capture({
+    event: "delete image",
+    distinctId: user.userId,
+    properties: {
+      imageId: id,
+    },
+  });
 
   redirect("/");
 }
