@@ -89,6 +89,11 @@ export const SimpleUploadButton = () => {
       toast("Upload complete");
       router.refresh();
     },
+    onUploadError: (err) => {
+      posthog.capture("upload_error", { err });
+      toast.dismiss("uploading-toast");
+      toast.error("Error uploading file");
+    },
   });
 
   return (
